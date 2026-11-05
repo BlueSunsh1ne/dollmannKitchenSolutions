@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS ingredients (
     category      TEXT,                      -- coarse, informal (Dairy, Spice, ...)
     container     TEXT,                      -- Glas, Can, Bag, ...
     default_unit  TEXT,                      -- 'g' / 'ml' / 'count'
-    is_staple     INTEGER NOT NULL DEFAULT 0 CHECK (is_staple IN (0, 1)),
     min_quantity  REAL,                      -- par level for 'running low' (later)
     min_unit      TEXT
 );

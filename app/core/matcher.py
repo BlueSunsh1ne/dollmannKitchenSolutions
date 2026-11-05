@@ -11,25 +11,25 @@ from app.core.recipes import RecipeForMatching
 class RecipeMatch:
     recipe_id: int
     name: str
-    score: float                        # share of required ingredients you have
+    score: float                        # share of REQUIRED ingredients you have
     have: list[str]
     missing: list[str]
     optional_have: list[str] = field(default_factory=list)
-    assumed: list[str] = field(default_factory=list)      # staples
+    optional_missing: list[str] = field(default_factory=list)  # 'for the complete recipe'
     time_minutes: int | None = None
     effort: str | None = None
 
 
 def score_recipes(recipes: list[RecipeForMatching], have_ids: set[int], *,
-                  staple_ids: set[int] = frozenset(), assume_staples: bool = True,
                   max_missing: int = 2) -> list[RecipeMatch]:
-    """Pure scoring + ranking (fewest missing, highest score, quickest)."""
+    """Pure scoring + ranking (fewest missing, highest score, quickest).
+    Optional ingredients never count as missing; they are listed in
+    optional_missing so the user knows what completes the recipe."""
     raise NotImplementedError
 
 
 def get_recipes_from_ingredients(conn: sqlite3.Connection, ingredient_ids: set[int], *,
-                                 assume_staples: bool = True,
                                  max_missing: int | None = None,
                                  limit: int | None = None) -> list[RecipeMatch]:
-    """Loads recipes + staples from the DB and calls score_recipes()."""
+    """Loads recipes from the DB and calls score_recipes()."""
     raise NotImplementedError

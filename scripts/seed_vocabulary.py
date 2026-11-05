@@ -1,4 +1,4 @@
-"""Load datasets/ingredient_id_list.xlsx (+ data/staples.txt) into the DB.
+"""Load datasets/ingredient_id_list.xlsx into the DB.
 
     python -m scripts.seed_vocabulary [--xlsx PATH] [--db PATH]
 """
@@ -13,7 +13,7 @@ def read_sheet(path: Path) -> list[dict]:
 
 
 def seed(conn: sqlite3.Connection, xlsx_path: Path) -> list[str]:
-    """Upsert all ingredients by id, mark staples. Returns warnings."""
+    """Upsert all ingredients by id. Returns warnings."""
     raise NotImplementedError
 
 

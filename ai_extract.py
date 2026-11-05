@@ -1,10 +1,16 @@
 """
 ai_extract.py
-The AI firewall. Takes a receipt photo (and optionally a product photo)
+The AI part of this project. It has 3 main obligations:
+
+1. Takes a receipt photo (and optionally a product photo)
 and returns a clean list of ParsedItem objects describing what was
 bought. This file does NOT touch the database -- the caller (the UI)
 reviews the result with the user, then feeds confirmed items into
 inventory.add_inventory().
+
+2. Some form of text to speech
+
+3. Some way to find receipes online
 
 Stub-first design:
   - Default mode is STUB: returns hardcoded fake data, ignores the image,
